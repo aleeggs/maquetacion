@@ -1,78 +1,185 @@
 /* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
-header {
-    background: #007BFF;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-h1 {
-    margin: 0;
-    font-size: 2.5em;
-}
-
-h2 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-/* Estilos de navegación */
+/* Estilos del menú lateral */
 nav {
-    background: #333;
+    background: #003f5c; /* Color oscuro */
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 30px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    padding: 12px 20px;
+    text-align: left;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 16px;
+    display: block;
+    transition: background 0.3s, padding 0.3s;
 }
 
 nav ul li a:hover {
-    background: #575757;
+    background: #005a8d;
+    padding-left: 30px; /* Agrega un pequeño deslizamiento */
+    border-radius: 5px;
 }
 
 /* Estilos del contenido principal */
 main {
-    padding: 20px;
-    background: #fff;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 250px;
+    padding: 120px 30px 30px 30px;
+    background-color: #ffffff;
+    min-height: calc(100vh - 120px); /* Asegura que el contenido ocupe todo el espacio restante */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: margin-left 0.3s ease-in-out;
 }
 
+/* Estilos del encabezado */
+header {
+    background: #005a8d;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 250px);
+    left: 250px;
+    z-index: 50;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #003f5c;
+}
+
+h1, h2 {
+    margin: 5px 0;
+}
+
+/* Estilo de las secciones */
 section {
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-h3 {
-    color: #007BFF;
+section h3 {
+    color: #005a8d;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+section p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
 }
 
 /* Estilos del pie de página */
 footer {
+    background: #003f5c;
+    color: white;
     text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
+    padding: 15px 0;
     position: relative;
     bottom: 0;
+    width: calc(100% - 250px);
+    left: 250px;
+    margin-top: 40px;
+    font-size: 14px;
+    box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejora del formato de las listas */
+ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Estilos del formulario */
+form {
+    margin-top: 20px;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form input, form select, form textarea {
     width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #005a8d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #004a73;
+}
+
+/* Mejoras de interactividad */
+a {
+    text-decoration: none;
+    color: #005a8d;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de los cuadros de contenido */
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #005a8d;
 }
