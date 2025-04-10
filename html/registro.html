@@ -37,6 +37,30 @@
                 <li>Adjunta la documentación requerida.</li>
                 <li>Envía la información antes de la fecha límite.</li>
             </ul>
+            <section>
+                <h3>Formulario de Registro</h3>
+                <form action="../php/registro.php" method="POST">
+                    <label for="nombre">Nombre del Proyecto:</label><br>
+                    <input type="text" id="nombre" name="nombre" required><br><br>
+            
+                    <label for="integrantes">Integrantes:</label><br>
+                    <input type="text" id="integrantes" name="integrantes" required><br><br>
+            
+                    <label for="semestre">Semestre:</label><br>
+                    <select id="semestre" name="semestre">
+                        <option value="1">1º</option>
+                        <option value="3">3º</option>
+                        <option value="5">5º</option>
+                        <option value="7">7º</option>
+                    </select><br><br>
+            
+                    <label for="descripcion">Descripción del Proyecto:</label><br>
+                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br><br>
+            
+                    <input type="submit" value="Registrar Proyecto">
+                </form>
+            </section>
+            
             <p><a href="formulario_registro.pdf" target="_blank">Descargar Formulario de Registro (PDF)</a></p>
         </section>
         <section>
