@@ -1,15 +1,25 @@
 <?php
 session_start();
 
-$proyectos = [
-    ["id" => 1, "nombre" => "Proyecto A", "responsable" => "Juan Pérez"],
-    ["id" => 2, "nombre" => "Proyecto B", "responsable" => "Ana López"]
-];
-
-if (isset($_GET['eliminar'])) {
-    $idEliminar = $_GET['eliminar'];
-    $proyectos = array_filter($proyectos, fn($p) => $p['id'] != $idEliminar);
+// Conexión a la base de datos
+$conexion = mysqli_connect("localhost", "root", "", "expo2025");
+if (!$conexion) {
+    die("❌ Error de conexión: " . mysqli_connect_error());
 }
+
+// Eliminar proyecto si viene por GET
+if (isset($_GET['eliminar'])) {
+    $idEliminar = intval($_GET['eliminar']); // Seguridad extra: convertir a número
+    $sqlEliminar = "DELETE FROM proyectos WHERE id = $idEliminar";
+    mysqli_query($conexion, $sqlEliminar);
+    // Redirigir para evitar re-eliminar si se recarga la página
+    header("Location: admin.php");
+    exit();
+}
+
+// Consultar proyectos registrados
+$sql = "SELECT * FROM proyectos";
+$resultado = mysqli_query($conexion, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -17,43 +27,9 @@ if (isset($_GET['eliminar'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../admin.css">
     <title>Panel de Administración - Expo ISIC</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        header {
-            background-color: #222;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #444;
-            color: white;
-        }
-        a.eliminar {
-            color: red;
-            text-decoration: none;
-        }
-        a.eliminar:hover {
-            text-decoration: underline;
-        }
-    </style>
+
 </head>
 <body>
     <header>
@@ -67,23 +43,40 @@ if (isset($_GET['eliminar'])) {
                 <tr>
                     <th>ID</th>
                     <th>Nombre del Proyecto</th>
-                    <th>Responsable</th>
-                    <th>Acciones</th>
+                    <th>Integrantes</th>
+                    <th>Semestre</th>
+                    <th>Descripción</th>
+                    <th>Acciones
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($proyectos as $proyecto): ?>
-                <tr>
-                    <td><?= $proyecto['id'] ?></td>
-                    <td><?= $proyecto['nombre'] ?></td>
-                    <td><?= $proyecto['responsable'] ?></td>
-                    <td>
-                        <a class="eliminar" href="?eliminar=<?= $proyecto['id'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este proyecto?')">Eliminar</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+                <?php if (mysqli_num_rows($resultado) > 0): ?>
+                    <?php while($proyecto = mysqli_fetch_assoc($resultado)): ?>
+                        <tr>
+                            <td><?= $proyecto['id'] ?></td>
+                            <td><?= htmlspecialchars($proyecto['nombre']) ?></td>
+                            <td><?= htmlspecialchars($proyecto['integrantes']) ?></td>
+                            <td><?= htmlspecialchars($proyecto['semestre']) ?></td>
+                            <td><?= htmlspecialchars($proyecto['descripcion']) ?></td>
+                            <td>
+                                <a class="eliminar" href="?eliminar=<?= $proyecto['id'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este proyecto?')">Eliminar</a>
+                                <a class="editar" href="editar.php?id=<?= $proyecto['id'] ?>">Editar</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6">No hay proyectos registrados aún.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </main>
 </body>
 </html>
+
+<?php
+// Cerrar conexión
+mysqli_close($conexion);
+?>

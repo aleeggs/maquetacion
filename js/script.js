@@ -13,3 +13,19 @@ window.addEventListener("scroll", function() {
     }
     lastScrollTop = scrollTop;
 });
+
+const nav = document.getElementById('menu');
+const hoverZone = document.getElementById('hover-zone');
+
+// Mostrar el menú al pasar por la zona
+hoverZone.addEventListener('mouseenter', () => {
+    nav.classList.add('visible');
+    document.body.classList.add('menu-open');
+});
+
+// Ocultar el menú cuando el mouse sale del menú
+nav.addEventListener('mouseleave', () => {
+    nav.classList.remove('visible');
+    document.body.classList.remove('menu-open');
+});
+
