@@ -17,11 +17,11 @@
             <li><a href="#">Registro de Proyectos</a></li>
             <li><a href="material.html">Material para el Evento</a></li>
             <li><a href="entrega.html">Entrega de Productos</a></li>
-            <li><a href="integradores1.html">Integradores 1º</a></li>
-            <li><a href="#">Integradores 3º</a></li>
-            <li><a href="#">Integradores 5º</a></li>
+            <li><a href="integradores2.php">Integradores 2º</a></li>
+            <li><a href="integradores4.php">Integradores 4º</a></li>
+            <li><a href="#">Integradores 6º</a></li>
             <li><a href="#">Integradores 5º Mixta</a></li>
-            <li><a href="#">Integradores 7º</a></li>
+            <li><a href="#">Integradores 8º</a></li>
         </ul>
     </nav>
     <main>
@@ -39,26 +39,30 @@
             </ul>
             <section>
                 <h3>Formulario de Registro</h3>
-                <form action="../php/registro.php" method="POST">
-                    <label for="nombre">Nombre del Proyecto:</label><br>
-                    <input type="text" id="nombre" name="nombre" required><br><br>
-            
-                    <label for="integrantes">Integrantes:</label><br>
-                    <input type="text" id="integrantes" name="integrantes" required><br><br>
-            
-                    <label for="semestre">Semestre:</label><br>
-                    <select id="semestre" name="semestre">
-                        <option value="1">1º</option>
-                        <option value="3">3º</option>
-                        <option value="5">5º</option>
-                        <option value="7">7º</option>
-                    </select><br><br>
-            
-                    <label for="descripcion">Descripción del Proyecto:</label><br>
-                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br><br>
-            
-                    <input type="submit" value="Registrar Proyecto">
-                </form>
+                <form action="../php/registro.php" method="POST" enctype="multipart/form-data">
+    <label for="nombre">Nombre del Proyecto:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="integrantes">Integrantes:</label><br>
+    <input type="text" id="integrantes" name="integrantes" required><br><br>
+
+    <label for="semestre">Semestre:</label><br>
+    <select id="semestre" name="semestre">
+        <option value="2">2º</option>
+        <option value="4">4º</option>
+        <option value="6">6º</option>
+        <option value="8">8º</option>
+    </select><br><br>
+
+    <label for="descripcion">Descripción del Proyecto:</label><br>
+    <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br><br>
+
+    <label for="archivo">Documento del Proyecto (PDF):</label><br>
+    <input type="file" id="archivo" name="archivo" accept="application/pdf" required><br><br>
+
+    <input type="submit" value="Registrar Proyecto">
+</form>
+
             </section>
             
             <p><a href="formulario_registro.pdf" target="_blank">Descargar Formulario de Registro (PDF)</a></p>
