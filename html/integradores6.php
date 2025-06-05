@@ -3,7 +3,7 @@ $conexion = new mysqli("localhost", "root", "", "expo2025");
 
 $proyectos = [];
 if (!$conexion->connect_error) {
-    $sql = "SELECT nombre, integrantes, descripcion FROM proyectos WHERE semestre = 4";
+    $sql = "SELECT nombre, integrantes, descripcion FROM proyectos WHERE semestre = 6";
     $resultado = $conexion->query($sql);
 
     if ($resultado && $resultado->num_rows > 0) {
@@ -21,13 +21,13 @@ if (!$conexion->connect_error) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expo-ISIC 2024 - Integradores 4º</title>
+    <title>Expo-ISIC 2024 - Integradores 6º</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header>
         <h1>Expo-ISIC</h1>
-        <h2>Integradores 4º</h2>
+        <h2>Integradores 6º</h2>
     </header>
 
     <nav>
@@ -37,8 +37,8 @@ if (!$conexion->connect_error) {
             <li><a href="material.html">Material para el Evento</a></li>
             <li><a href="entrega.html">Entrega de Productos</a></li>
             <li><a href="integradores2.php">Integradores 4º</a></li>
-            <li><a class="active" href="integradores4.html">Integradores 4º</a></li>
-            <li><a href="integradores6.html">Integradores 6º</a></li>
+            <li><a href="integradores4.html">Integradores 4º</a></li>
+            <li><a class="active" href="integradores6.html">Integradores 6º</a></li>
             <li><a href="#">Integradores 6º Mixta</a></li>
             <li><a href="integradores8.html">Integradores 8º</a></li>
         </ul>
@@ -46,7 +46,7 @@ if (!$conexion->connect_error) {
 
     <main>
         <section>
-            <h2>Proyectos Integradores de 4º Semestre</h2>
+            <h2>Proyectos Integradores de 6º Semestre</h2>
             <p>Esta sección muestra los proyectos registrados del cuarto semestre.</p>
         </section>
 
@@ -56,12 +56,10 @@ if (!$conexion->connect_error) {
             <ul>
                 <?php foreach ($proyectos as $p): ?>
                 <li>
-                <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
-                <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
-                <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?><br>
-                <?php if (!empty($p['archivo'])): ?>
-                <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
-                <?php endif; ?>
+                    <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
+                    <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
+                    <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?> <br>
+                    <?= htmlspecialchars($p['archivo']) ?>
                 </li><br>
                 <?php endforeach; ?>
             </ul>

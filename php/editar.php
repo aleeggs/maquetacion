@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $integrantes = mysqli_real_escape_string($conexion, $_POST['integrantes']);
     $semestre = mysqli_real_escape_string($conexion, $_POST['semestre']);
     $descripcion = mysqli_real_escape_string($conexion, $_POST['descripcion']);
+    $archivo = mysqli_real_escape_string($conexion, $_POST['archivo']);
 
     $sqlUpdate = "UPDATE proyectos 
-                  SET nombre='$nombre', integrantes='$integrantes', semestre='$semestre', descripcion='$descripcion' 
+                  SET nombre='$nombre', integrantes='$integrantes', semestre='$semestre', descripcion='$descripcion' archivo='$archivo'
                   WHERE id=$id";
 
     if (mysqli_query($conexion, $sqlUpdate)) {
@@ -65,6 +66,10 @@ if (!$proyecto) {
             <div class="mb-3">
                 <label for="semestre" class="form-label">Semestre</label>
                 <input type="text" class="form-control" id="semestre" name="semestre" required value="<?= htmlspecialchars($proyecto['semestre']) ?>">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required><?= htmlspecialchars($proyecto['descripcion']) ?></textarea>
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>

@@ -55,10 +55,13 @@ if (!$conexion->connect_error) {
             <h3>Lista de Proyectos</h3>
             <ul>
                 <?php foreach ($proyectos as $p): ?>
-                <li>
-                    <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
-                    <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
-                    <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?> <br>
+               <li>
+                <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
+                <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
+                <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?><br>
+                <?php if (!empty($p['archivo'])): ?>
+                <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
+                <?php endif; ?>
                 </li><br>
                 <?php endforeach; ?>
             </ul>

@@ -46,6 +46,7 @@ $resultado = mysqli_query($conexion, $sql);
                     <th>Integrantes</th>
                     <th>Semestre</th>
                     <th>Descripción</th>
+                    <th>Archivo</th>
                     <th>Acciones
                     </th>
                 </tr>
@@ -59,6 +60,7 @@ $resultado = mysqli_query($conexion, $sql);
                             <td><?= htmlspecialchars($proyecto['integrantes']) ?></td>
                             <td><?= htmlspecialchars($proyecto['semestre']) ?></td>
                             <td><?= htmlspecialchars($proyecto['descripcion']) ?></td>
+                            <td><?= hrmlspecialchars($proyecto['archivo'])?> </td>
                             <td>
                                 <a class="eliminar" href="?eliminar=<?= $proyecto['id'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este proyecto?')">Eliminar</a>
                                 <a class="editar" href="editar.php?id=<?= $proyecto['id'] ?>">Editar</a>
