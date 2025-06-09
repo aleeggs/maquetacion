@@ -3,7 +3,7 @@ $conexion = new mysqli("localhost", "root", "", "expo2025");
 
 $proyectos = [];
 if (!$conexion->connect_error) {
-    $sql = "SELECT nombre, integrantes, descripcion, archivo FROM proyectos WHERE semestre = 4";
+    $sql = "SELECT nombre, integrantes, descripcion, archivo FROM proyectos WHERE semestre = 8";
     $resultado = $conexion->query($sql);
 
     if ($resultado && $resultado->num_rows > 0) {
@@ -21,7 +21,7 @@ if (!$conexion->connect_error) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expo-ISIC 2024 - Integradores 4º</title>
+    <title>Expo-ISIC 2024 - Integradores 8º</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         .pdf-viewer {
@@ -36,7 +36,7 @@ if (!$conexion->connect_error) {
 <body>
     <header>
         <h1>Expo-ISIC</h1>
-        <h2>Integradores 4º</h2>
+        <h2>Integradores 8º</h2>
     </header>
 
     <nav>
@@ -46,17 +46,17 @@ if (!$conexion->connect_error) {
             <li><a href="material.html">Material para el Evento</a></li>
             <li><a href="entrega.html">Entrega de Productos</a></li>
             <li><a href="integradores2.php">Integradores 2º</a></li>
-            <li><a class ="active" href="integradores4.php">Integradores 4º</a></li>
+            <li><a href="integradores4.php">Integradores 4º</a></li>
             <li><a href="integradores6.php">Integradores 6º</a></li>
             <li><a href="#">Integradores 6º Mixta</a></li>
-            <li><a href="integradores8.php">Integradores 8º</a></li>
+            <li><a class ="active" href="integradores8.php">Integradores 8º</a></li>
         </ul>
     </nav>
 
     <main>
         <section>
-            <h2>Proyectos Integradores de 4º Semestre</h2>
-            <p>Esta sección muestra los proyectos registrados del cuarto semestre.</p>
+            <h2>Proyectos Integradores de 8º Semestre</h2>
+            <p>Esta sección muestra los proyectos registrados del octavo semestre.</p>
         </section>
 
         <?php if (count($proyectos) > 0): ?>

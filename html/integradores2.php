@@ -3,7 +3,7 @@ $conexion = new mysqli("localhost", "root", "", "expo2025");
 
 $proyectos = [];
 if (!$conexion->connect_error) {
-    $sql = "SELECT nombre, integrantes, descripcion FROM proyectos WHERE semestre = 2";
+    $sql = "SELECT nombre, integrantes, descripcion, archivo FROM proyectos WHERE semestre = 2";
     $resultado = $conexion->query($sql);
 
     if ($resultado && $resultado->num_rows > 0) {
@@ -23,6 +23,15 @@ if (!$conexion->connect_error) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expo-ISIC 2024 - Integradores 2º</title>
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        .pdf-viewer {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px; 
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -37,10 +46,10 @@ if (!$conexion->connect_error) {
             <li><a href="material.html">Material para el Evento</a></li>
             <li><a href="entrega.html">Entrega de Productos</a></li>
             <li><a class="active" href="integradores2.php">Integradores 2º</a></li>
-            <li><a href="integradores4.html">Integradores 4º</a></li>
-            <li><a href="integradores6.html">Integradores 6º</a></li>
+            <li><a href="integradores4.php">Integradores 4º</a></li>
+            <li><a href="integradores6.php">Integradores 6º</a></li>
             <li><a href="#">Integradores 6º Mixta</a></li>
-            <li><a href="integradores8.html">Integradores 8º</a></li>
+            <li><a href="integradores8.php">Integradores 8º</a></li>
         </ul>
     </nav>
 
@@ -61,6 +70,7 @@ if (!$conexion->connect_error) {
                 <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?><br>
                 <?php if (!empty($p['archivo'])): ?>
                 <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
+                <iframe class="pdf-viewer" src="../archivos/<?= htmlspecialchars($p['archivo']) ?>" frameborder="0"></iframe>
                 <?php endif; ?>
                 </li><br>
                 <?php endforeach; ?>

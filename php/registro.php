@@ -10,24 +10,23 @@ $nombre = $_POST["nombre"];
 $integrantes = $_POST["integrantes"];
 $semestre = $_POST["semestre"];
 $descripcion = $_POST["descripcion"];
-$archivoNombre = $_FILES["archivo"]["name"];
-$archivoTmp = $_FILES["archivo"]["tmp_name"];
 
 // Directorio donde se guardarán los archivos
-$directorioDestino = "../archivos/";
-$rutaDestino = $directorioDestino . basename($archivoNombre);
+$archivo = $_FILES['archivo'];
+$nombreArchivo = basename($archivo['name']);
+$rutaDestino = "../archivos/" . $nombreArchivo;
 
 // Crear el directorio si no existe
-if (!is_dir($directorioDestino)) {
-    mkdir($directorioDestino, 0777, true);
+if (!is_dir("../archivos")) {  // Cambiado a "../archivos"
+    mkdir("../archivos", 0777, true);
 }
 
 $mensaje = "";
 
-if (move_uploaded_file($archivoTmp, $rutaDestino)) {
+if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {  // Cambiado a $archivo['tmp_name']
     // Insertar los datos en la base de datos
     $stmt = $conexion->prepare("INSERT INTO proyectos (nombre, integrantes, semestre, descripcion, archivo) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssiss", $nombre, $integrantes, $semestre, $descripcion, $archivo);
+    $stmt->bind_param("ssiss", $nombre, $integrantes, $semestre, $descripcion, $nombreArchivo);
 
     if ($stmt->execute()) {
         $mensaje = "Proyecto registrado exitosamente.";
