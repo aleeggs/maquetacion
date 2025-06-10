@@ -64,14 +64,19 @@ if (!$conexion->connect_error) {
             <h3>Lista de Proyectos</h3>
             <ul>
                 <?php foreach ($proyectos as $p): ?>
-               <li>
-                <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
-                <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
-                <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?><br>
-                <?php if (!empty($p['archivo'])): ?>
-                <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
-                <iframe class="pdf-viewer" src="../archivos/<?= htmlspecialchars($p['archivo']) ?>" frameborder="0"></iframe>
-                <?php endif; ?>
+                <li>
+                    <strong><?= htmlspecialchars($p['nombre']) ?></strong><br>
+                    <em>Integrantes:</em> <?= htmlspecialchars($p['integrantes']) ?><br>
+                    <em>Descripción:</em> <?= htmlspecialchars($p['descripcion']) ?><br>
+                    <?php if (!empty($p['archivo'])): ?>
+                    <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
+                    <iframe class="pdf-viewer" src="../archivos/<?= htmlspecialchars($p['archivo']) ?>" frameborder="0"></iframe>
+                    <?php endif; ?>
+                    <!-- Botón para evaluar el proyecto -->
+                    <form action="evaluacion.php" method="get">
+                        <input type="hidden" name="proyecto" value="<?= htmlspecialchars($p['nombre']) ?>">
+                        <button type="submit">Evaluar Proyecto</button>
+                    </form>
                 </li><br>
                 <?php endforeach; ?>
             </ul>

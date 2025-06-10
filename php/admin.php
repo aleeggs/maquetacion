@@ -63,6 +63,7 @@ $resultado = mysqli_query($conexion, $sql);
                             <td>
                                 <a class="eliminar" href="?eliminar=<?= $proyecto['id'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este proyecto?')">Eliminar</a>
                                 <a class="editar" href="editar.php?id=<?= $proyecto['id'] ?>">Editar</a>
+                                <a class="evaluar" href="../html/evaluacion.php?id=<?= $proyecto['id'] ?>">Evaluar</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
