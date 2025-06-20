@@ -72,6 +72,10 @@ if (!$conexion->connect_error) {
                 <em>Archivo:</em> <a href="../archivos/<?= htmlspecialchars($p['archivo']) ?>" target="_blank">Ver PDF</a><br>
                 <iframe class="pdf-viewer" src="../archivos/<?= htmlspecialchars($p['archivo']) ?>" frameborder="0"></iframe>
                 <?php endif; ?>
+                <form action="evaluacion.php" method="get">
+                <input type="hidden" name="proyecto" value="<?= htmlspecialchars($p['nombre']) ?>">
+                <button type="submit">Evaluar Proyecto</button>
+                </form>
                 </li><br>
                 <?php endforeach; ?>
             </ul>
