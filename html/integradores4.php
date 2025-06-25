@@ -15,7 +15,7 @@ if (!$conexion->connect_error) {
     $conexion->close();
 }
 ?>
-
+ing_sistemas_computacionales@itsoeh.edu.mx
 <!DOCTYPE html>
 <html lang="es">
 <head>
